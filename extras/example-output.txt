@@ -1,0 +1,14 @@
+user@localhost
+--------------
+CPU      : AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx
+Memory   : 16.660GiB / 17.904GiB
+Device   : 81NC
+Distro   : Gentoo/Linux (gnu/linux)
+Kernel   : 5.15.26-gentoo
+Shell    : /bin/zsh
+Emacs    : 27.2
+Packages : 63 pkgs (loaded in 1.651704712 seconds)
+User Dir : ~/.config/emacs/ (8762 files)
+Theme    : spacemacs-dark 
+Size     : 117 lines / 59 columns
+Uptime   : 30 minutes, 30 seconds in Emacs
