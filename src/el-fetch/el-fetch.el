@@ -1,4 +1,4 @@
-;;; el-fetch.el --- Neofetch-inspired program in Emacs Lisp -*- lexical-binding: t -*-
+;;; el-fetch.el --- Neofetch-inspired, system information gathering program (CPU, memory, Emacs properties) -*- lexical-binding: t -*-
 
 
 ;; This file is part of el-fetch.
@@ -30,7 +30,8 @@
 ;;; Commentary:
 
 
-;; Neofetch-inspired program in Emacs Lisp.
+;; Neofetch-inspired, system information gathering program
+;; (CPU, memory, Emacs properties).
 
 ;; Neofetch: https://github.com/dylanaraps/neofetch
 
