@@ -1,4 +1,4 @@
-;;; el-fetch.el --- Neofetch-inspired, system information gathering program (CPU, memory, Emacs properties) -*- lexical-binding: t -*-
+;;; el-fetch.el --- Neofetch-like, information gathering program (CPU, RAM, etc) -*- lexical-binding: t -*-
 
 
 ;; This file is part of el-fetch.
@@ -30,8 +30,7 @@
 ;;; Commentary:
 
 
-;; Neofetch-inspired, system information gathering program
-;; (CPU, memory, Emacs properties).
+;; Neofetch-like, information gathering program (CPU, RAM, etc)
 
 ;; Neofetch: https://github.com/dylanaraps/neofetch
 
@@ -136,11 +135,7 @@ Get amount of memory, reported by Emacs, both used and total, in gibibytes."
                (total-m (% total 1024))
                (used-g  (/ used  1024 1024))
                (used-m  (% used  1024)))
-          (concat (number-to-string used-g)
-                  "." (number-to-string used-m)  "GiB"
-                  " / "
-                  (number-to-string total-g)
-                  "." (number-to-string total-m) "GiB"))
+          (format "%d.%d GiB / %d.%d GiB" used-g used-m total-g total-m))
       "N/A")))
 
 (defun el-fetch--info-kernel ()
@@ -164,39 +159,35 @@ Get user's shell."
 Get GNU Emacs version and the version of GUI toolkit Emacs was built to use."
   (concat emacs-version
           (or (and (boundp 'gtk-version-string)
-                   (concat " with GTK " gtk-version-string))
-              (and (boundp 'motif-version-string)
-                   (concat " with Motif " motif-version-string))
-              "")))
+                (concat " with GTK " gtk-version-string))
+             (and (boundp 'motif-version-string)
+                (concat " with Motif " motif-version-string))
+             "")))
 
 (defun el-fetch--info-emacs-pkgs ()
   "El-Fetch: packages part.
 Get installed Emacs Lisp packages the time that was taken to load them."
-  (concat (number-to-string (length package-activated-list))
-          " pkgs (loaded in " (emacs-init-time) ")"))
+  (format "%d pkgs (loaded in %s)"
+          (length package-activated-list) (emacs-init-time)))
 
 (defun el-fetch--info-emacs-user-dir ()
   "El-Fetch: directory part.
 Get path and size of user's Emacs directory."
-  (concat (abbreviate-file-name user-emacs-directory)
-          " ("
-          (number-to-string
-           (length (directory-files-recursively user-emacs-directory ".*" nil)))
-          " files"
-          ")"))
+  (format "%s (%d files)"
+          (abbreviate-file-name user-emacs-directory)
+          (length (directory-files-recursively user-emacs-directory ".*" nil))))
 
 (defun el-fetch--info-emacs-theme ()
   "El-Fetch: Emacs theme part.
 Get loaded themes."
-  (apply #'concat (mapcar #'(lambda (sym) (concat (symbol-name sym) " "))
+  (apply #'concat (mapcar (lambda (sym) (concat (symbol-name sym) " "))
                           custom-enabled-themes)))
 
 (defun el-fetch--info-emacs-frame ()
   "El-Fetch: Emacs frame part.
 Get width and height of current frame."
-  (concat (number-to-string (frame-parameter nil 'width)) " lines"
-          " / "
-          (number-to-string (frame-parameter nil 'height)) " columns"))
+  (format "%d lines / %d columns"
+          (frame-parameter nil 'width) (frame-parameter nil 'height)))
 
 (defun el-fetch--info-emacs-uptime ()
   "El-Fetch: uptime part.
