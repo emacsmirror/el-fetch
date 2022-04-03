@@ -1,4 +1,4 @@
-;;; el-fetch.el --- Neofetch-like, information gathering program (CPU, RAM, etc) -*- lexical-binding: t -*-
+;;; el-fetch.el --- Show system information in Neofetch-like style (eg CPU, RAM) -*- lexical-binding: t -*-
 
 
 ;; This file is part of el-fetch.
@@ -30,7 +30,7 @@
 ;;; Commentary:
 
 
-;; Neofetch-like, information gathering program (CPU, RAM, etc)
+;; Show system information in Neofetch-like style (eg CPU, RAM).
 
 ;; Neofetch: https://github.com/dylanaraps/neofetch
 
@@ -257,7 +257,7 @@ Do not use anywhere else."
 ;; Main provided features
 
 (defun el-fetch ()
-  "Show system information in Neofetch-like style."
+  "Show system information in Neofetch-like style (eg CPU, RAM)."
   (interactive)
   (let ((el-fetch-buffer-name "*El-Fetch*"))
     (if (get-buffer el-fetch-buffer-name)
