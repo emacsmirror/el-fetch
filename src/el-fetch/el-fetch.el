@@ -21,7 +21,7 @@
 
 
 ;; Author: Maciej Barć <xgqt@riseup.net>
-;; Homepage: https://gitlab.com/xgqt/el-fetch
+;; Homepage: https://gitlab.com/xgqt/emacs-el-fetch
 ;; Version: 0.0.0
 ;; Package-Requires: ((emacs "25.1"))
 
