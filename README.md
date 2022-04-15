@@ -1,8 +1,6 @@
 # El-Fetch
 
-[![MELPA](https://melpa.org/packages/el-fetch-badge.svg)](https://melpa.org/#/el-fetch)
-
-[![MELPA Stable](https://stable.melpa.org/packages/el-fetch-badge.svg)](https://stable.melpa.org/#/el-fetch)
+[![MELPA](https://melpa.org/packages/el-fetch-badge.svg)](https://melpa.org/#/el-fetch) [![MELPA Stable](https://stable.melpa.org/packages/el-fetch-badge.svg)](https://stable.melpa.org/#/el-fetch)
 
 
 ## About
