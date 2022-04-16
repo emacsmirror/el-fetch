@@ -213,7 +213,7 @@ Get how long the Emacs process is running."
      "User Dir : "  (el-fetch--info-emacs-user-dir)   "\n"
      "Theme    : "  (el-fetch--info-emacs-theme)      "\n"
      "Size     : "  (el-fetch--info-emacs-frame)      "\n"
-     "Uptime   : "  (el-fetch--info-emacs-uptime)     "\n")))
+     "Uptime   : "  (el-fetch--info-emacs-uptime))))
 
 
 ;; Mode
@@ -263,8 +263,16 @@ Do not use anywhere else."
       (with-current-buffer el-fetch-buffer
         (goto-char (point-max))
         (insert (el-fetch--collect-info))
+        (insert "\n")
         (el-fetch-mode))
       (switch-to-buffer el-fetch-buffer))))
+
+(defun el-fetch-console ()
+  "Print el-fetch output as message, this is meant to be run from batch mode.
+Run Emacs with similar options, for example:
+--batch -q --no-site-file --eval \"(load-file \"src/el-fetch/el-fetch.el\")\"
+--eval \"(el-fetch-console)\""
+  (message (el-fetch--collect-info)))
 
 
 (provide 'el-fetch)
