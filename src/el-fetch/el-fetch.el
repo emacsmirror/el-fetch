@@ -177,8 +177,10 @@ Get path and size of user's Emacs directory."
 (defun el-fetch--info-emacs-theme ()
   "El-Fetch: Emacs theme part.
 Get loaded themes."
-  (apply #'concat (mapcar (lambda (sym) (concat (symbol-name sym) " "))
-                          custom-enabled-themes)))
+  (if custom-enabled-themes
+      (apply #'concat (mapcar (lambda (sym) (concat (symbol-name sym) " "))
+                              custom-enabled-themes)))
+  "N/A")
 
 (defun el-fetch--info-emacs-frame ()
   "El-Fetch: Emacs frame part.
