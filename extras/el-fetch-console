@@ -22,6 +22,7 @@
 
 trap 'exit 128' INT
 
-emacs -Q --batch \
-      --eval "(load-file \"src/el-fetch/el-fetch.el\")" \
-      --eval "(el-fetch-console)"
+
+lib="$(dirname "${0}")"/../src/el-fetch/el-fetch.el
+
+emacs -Q --batch --eval "(load-file \"${lib}\")" --eval "(el-fetch-console)"
