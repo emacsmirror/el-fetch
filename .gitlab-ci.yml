@@ -27,15 +27,17 @@ variables:
 
 stages:
   - install
+  - run
 
 image: alpine:latest
 
 before_script:
   - apk update
   - apk add emacs make
+  - make compile
 
 
-emacs:
+install:
   stage: install
 
   rules:
@@ -46,3 +48,17 @@ emacs:
 
   script:
     - make install
+
+
+run:
+  stage: run
+
+  rules:
+    - changes:
+      - .gitlab-ci.yml
+      - Makefile
+      - extras/el-fetch-console
+      - src/**/*.el
+
+  script:
+    - sh ./extras/el-fetch-console
