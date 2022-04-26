@@ -61,7 +61,7 @@ compile: compile-el-fetch
 
 test-%:
 	$(TESTCMD) \
-		-L $(SRCDIR)/$(*) -L $(TESTSDIR)/$(*) --directory $(TESTSDIR)/$(*)
+		-L $(SRCDIR)/$(*) -L $(TESTSDIR)/$(*)
 
 test: test-el-fetch
 
