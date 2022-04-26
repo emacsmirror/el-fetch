@@ -17,6 +17,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 
 
+CASK        := cask
 EMACS       := emacs
 FIND        := find
 
@@ -27,6 +28,10 @@ EMACSCMD     = $(EMACS) $(EMACFLAGS)
 
 
 all: clean compile
+
+
+cask-%:
+	$(CASK) exec $(MAKE) $(*)
 
 
 clean-%:
@@ -49,3 +54,7 @@ install-%: compile-%
 		--eval "(package-install-file \"$(SRC)/$(*)\")"
 
 install: install-el-fetch
+
+
+run:
+	sh ./extras/el-fetch-console
