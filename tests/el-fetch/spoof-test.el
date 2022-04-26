@@ -25,15 +25,15 @@
 (require 'thingatpt)
 
 
-(defun user-real-login-name ()
-  "user")
-
-(defun system-name ()
-  "system")
-
-
 (describe "Spoof"
   (it "user@system"
+    (fset 'user-real-login-name (lambda () "user"))
+    (fset 'system-name (lambda () "system"))
     (el-fetch)
     (goto-char (point-min))
-    (expect (re-search-forward "user@system"))))
+    (expect (re-search-forward "user@system")))
+  (it "Uptime"
+    (fset 'emacs-uptime (lambda () "spoof"))
+    (el-fetch)
+    (goto-char (point-min))
+    (expect (re-search-forward "spoof in Emacs"))))
