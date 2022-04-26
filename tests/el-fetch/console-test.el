@@ -29,5 +29,5 @@
   (it "Spoofed SHELL"
     (expect (let ((process-environment '("SHELL=emacs")))
               (string-match-p
-               "Shell.*:.*emacs"
+               ".*Shell    : emacs.*"
                (shell-command-to-string "./extras/el-fetch-console"))))))
