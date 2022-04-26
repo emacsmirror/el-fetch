@@ -27,7 +27,8 @@
   (it "Any output"
     (expect (stringp (shell-command-to-string "./extras/el-fetch-console"))))
   (it "Spoofed SHELL"
-    (expect (let ((process-environment '("SHELL=emacs")))
+    (expect (let ((process-environment
+                   (append '("SHELL=emacs") process-environment)))
               (split-string
-               (shell-command-to-string "./extras/el-fetch-console")"\n" t))
+               (shell-command-to-string "./extras/el-fetch-console") "\n" t))
             :to-contain "Shell    : emacs")))
