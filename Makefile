@@ -31,7 +31,7 @@ TESTSDIR    := $(PWD)/tests
 
 EMACFLAGS   := --batch -q --no-site-file
 EMACSCMD     = $(EMACS) $(EMACFLAGS)
-TESTFLAGS   := -L . --traceback full
+TESTFLAGS   := -L $(PWD) --traceback full
 TESTCMD      = $(BUTTERCUP) $(TESTFLAGS)
 
 
@@ -61,7 +61,9 @@ compile: compile-el-fetch
 
 test-%:
 	$(TESTCMD) \
-		-L $(SRCDIR)/$(*) -L $(TESTSDIR)/$(*)
+		-L $(SRCDIR)/$(*) \
+		-L $(TESTSDIR)/$(*) \
+		--directory $(TESTSDIR)/$(*)
 
 test: test-el-fetch
 
