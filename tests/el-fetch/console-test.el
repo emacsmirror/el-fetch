@@ -23,12 +23,16 @@
 (require 'buttercup)
 
 
+(defvar el-fetch-console
+  (expand-file-name
+   "../../extras/el-fetch-console" (file-name-directory load-file-name)))
+
+
 (describe "Console"
   (it "Any output"
-    (expect (stringp (shell-command-to-string "./extras/el-fetch-console"))))
+    (expect (stringp (shell-command-to-string el-fetch-console))))
   (it "Spoofed SHELL"
     (expect (let ((process-environment
                    (append '("SHELL=emacs") process-environment)))
-              (split-string
-               (shell-command-to-string "./extras/el-fetch-console") "\n" t))
+              (split-string (shell-command-to-string el-fetch-console) "\n" t))
             :to-contain "Shell    : emacs")))
