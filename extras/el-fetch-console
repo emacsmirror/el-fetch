@@ -21,11 +21,13 @@
 
 
 (defvar el-fetch-lib
-  (expand-file-name "../../src/el-fetch/"  (nth 2 command-line-args)))
+  (expand-file-name
+   "../src/el-fetch/" (file-name-directory (nth 2 command-line-args)))
+  "Path to the `el-fetch' library.")
 
 (add-to-list 'load-path el-fetch-lib)
 
-(require 'el-fetch)
+(require 'el-fetch nil t)
 
 
 (el-fetch-console)
