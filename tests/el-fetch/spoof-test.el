@@ -36,4 +36,9 @@
     (fset 'emacs-uptime (lambda () "spoof"))
     (el-fetch)
     (goto-char (point-min))
-    (expect (re-search-forward "spoof in Emacs"))))
+    (expect (re-search-forward "spoof in Emacs")))
+  (it "Shell"
+    (fset 'getenv (lambda (&rest rest) "emacs"))
+    (el-fetch)
+    (goto-char (point-min))
+    (expect (re-search-forward "Shell    : emacs"))))
