@@ -62,4 +62,4 @@ run:
 
   script:
     - mkdir -p ~/.emacs.d
-    - sh ./extras/el-fetch-console
+    - make run
