@@ -29,6 +29,8 @@
   (when (file-executable-p executable)
     (it "Any output"
       (expect (stringp (shell-command-to-string executable))))
+    (it "Contains CPU"
+      (expect (string-match-p ".*CPU.*" (shell-command-to-string executable))))
     (it "Spoofed SHELL"
       (expect (let ((process-environment
                      (append '("SHELL=emacs") process-environment)))
