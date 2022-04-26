@@ -76,7 +76,7 @@
                       "/etc/os-release"
                       "/var/lib/os-release"
                       "/usr/lib/os-release"))
-        (return nil)
+        (return)
         (os (symbol-name system-type)))
     (if (dolist (file file-paths return)
           (if (file-readable-p file)
