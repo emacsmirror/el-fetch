@@ -54,7 +54,6 @@ install:
 
 test:
   stage: test
-  needs: ["install"]
 
   rules:
     - changes:
@@ -70,7 +69,6 @@ test:
 
 run:
   stage: run
-  needs: ["install"]
 
   rules:
     - changes:
