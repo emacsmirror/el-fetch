@@ -27,6 +27,7 @@ variables:
 
 stages:
   - install
+  - test
   - run
 
 image: alpine:latest
