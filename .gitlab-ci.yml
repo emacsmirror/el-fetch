@@ -50,6 +50,17 @@ install:
     - make install
 
 
+test:
+  image: debian:unstable
+
+  before_script:
+    - apt update
+    - apt intall -y emacs-nox emacs-buttercup make
+
+  script:
+    - make test
+
+
 run:
   stage: run
 
