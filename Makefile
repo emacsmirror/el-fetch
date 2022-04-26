@@ -17,14 +17,18 @@
 # SPDX-License-Identifier: GPL-3.0-only
 
 
+BUTTERCUP   := buttercup
 CASK        := cask
 EMACS       := emacs
 FIND        := find
 
 SRC         := $(PWD)/src
+TESTS       := $(PWD)/tests
 
 EMACFLAGS   := --batch -q --no-site-file
 EMACSCMD     = $(EMACS) $(EMACFLAGS)
+TESTFLAGS   := -L . --traceback full
+TESTCMD      = $(BUTTERCUP) $(TESTFLAGS)
 
 
 all: clean compile
@@ -46,6 +50,13 @@ compile-%:
 		--eval "(byte-recompile-directory \"$(SRC)/$(*)\" 0)"
 
 compile: compile-el-fetch
+
+
+test-%:
+	$(TESTCMD) \
+		-L $(SRC)/$(*) -L $(TESTS)/$(*) --directory $(TESTS)/$(*)
+
+test: test-el-fetch
 
 
 install-%: compile-%
