@@ -21,9 +21,13 @@ BUTTERCUP   := buttercup
 CASK        := cask
 EMACS       := emacs
 FIND        := find
+RM          := rm
+RMDIR       := $(RM) -r
 
-SRC         := $(PWD)/src
-TESTS       := $(PWD)/tests
+CASKDIR     := $(PWD)/.cask
+EXTRASDIR   := $(PWD)/extras
+SRCDIR      := $(PWD)/src
+TESTSDIR    := $(PWD)/tests
 
 EMACFLAGS   := --batch -q --no-site-file
 EMACSCMD     = $(EMACS) $(EMACFLAGS)
@@ -39,22 +43,25 @@ cask-%:
 
 
 clean-%:
-	$(FIND) $(SRC)/$(*) -iname "*.elc" -delete
+	$(FIND) $(SRCDIR)/$(*) -iname "*.elc" -delete
 
-clean: clean-el-fetch
+clean-cask:
+	if [ -d $(CASKDIR) ] ; then $(RMDIR) $(CASKDIR) ; fi
+
+clean: clean-cask clean-el-fetch
 
 
 compile-%:
 	$(EMACSCMD) \
-		--directory=$(SRC)/$(*) \
-		--eval "(byte-recompile-directory \"$(SRC)/$(*)\" 0)"
+		--directory $(SRCDIR)/$(*) \
+		--eval "(byte-recompile-directory \"$(SRCDIR)/$(*)\" 0)"
 
 compile: compile-el-fetch
 
 
 test-%:
 	$(TESTCMD) \
-		-L $(SRC)/$(*) -L $(TESTS)/$(*) --directory $(TESTS)/$(*)
+		-L $(SRCDIR)/$(*) -L $(TESTSDIR)/$(*) --directory $(TESTSDIR)/$(*)
 
 test: test-el-fetch
 
@@ -62,10 +69,10 @@ test: test-el-fetch
 install-%: compile-%
 	$(EMACSCMD) \
 		--eval "(require 'package)" \
-		--eval "(package-install-file \"$(SRC)/$(*)\")"
+		--eval "(package-install-file \"$(SRCDIR)/$(*)\")"
 
 install: install-el-fetch
 
 
 run:
-	$(EMACSCMD) --script ./extras/el-fetch-console
+	$(EMACSCMD) --script $(EXTRASDIR)/el-fetch-console
