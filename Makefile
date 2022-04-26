@@ -57,4 +57,4 @@ install: install-el-fetch
 
 
 run:
-	sh ./extras/el-fetch-console
+	$(EMACSCMD) --script ./extras/el-fetch-console
