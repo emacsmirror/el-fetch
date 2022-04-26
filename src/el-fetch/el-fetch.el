@@ -265,7 +265,7 @@ Do not use anywhere else."
       (with-current-buffer el-fetch-buffer
         (goto-char (point-max))
         (insert (el-fetch--collect-info))
-        (insert "\n")
+        (newline)
         (el-fetch-mode))
       (switch-to-buffer el-fetch-buffer))))
 
