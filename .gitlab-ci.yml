@@ -56,7 +56,7 @@ test:
 
   before_script:
     - apt update
-    - apt install -y emacs-nox emacs-buttercup make
+    - apt install -y emacs-nox elpa-buttercup make
 
   script:
     - make test
