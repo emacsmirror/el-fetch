@@ -59,6 +59,7 @@ test:
     - apt install -y emacs-nox elpa-buttercup make
 
   script:
+    - mkdir -p ~/.emacs.d
     - make test
 
 
