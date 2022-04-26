@@ -30,11 +30,12 @@ stages:
   - test
   - run
 
-image: alpine:latest
+image: debian:unstable
 
 before_script:
-  - apk update
-  - apk add emacs make
+  - apt update
+  - apt install -y emacs-nox make
+  - mkdir -p ~/.emacs.d
   - make compile
 
 
@@ -52,19 +53,24 @@ install:
 
 
 test:
-  image: debian:unstable
+  stage: test
+  needs: ["install"]
 
-  before_script:
-    - apt update
-    - apt install -y emacs-nox elpa-buttercup make
+  rules:
+    - changes:
+      - .gitlab-ci.yml
+      - Makefile
+      - src/**/*.el
+      - tests/**/*.el
 
   script:
-    - mkdir -p ~/.emacs.d
+    - apt install -y elpa-buttercup
     - make test
 
 
 run:
   stage: run
+  needs: ["install"]
 
   rules:
     - changes:
@@ -74,5 +80,4 @@ run:
       - src/**/*.el
 
   script:
-    - mkdir -p ~/.emacs.d
     - make run
