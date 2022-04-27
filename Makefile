@@ -29,8 +29,8 @@ EXTRASDIR   := $(PWD)/extras
 SRCDIR      := $(PWD)/src
 TESTSDIR    := $(PWD)/tests
 
-EMACFLAGS   := --batch -q --no-site-file
-EMACSCMD     = $(EMACS) $(EMACFLAGS)
+EMACSFLAGS  := --batch -q --no-site-file
+EMACSCMD     = $(EMACS) $(EMACSFLAGS)
 TESTFLAGS   := -L $(PWD) --traceback full
 TESTCMD      = $(BUTTERCUP) $(TESTFLAGS)
 
