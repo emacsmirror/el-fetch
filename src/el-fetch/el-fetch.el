@@ -255,6 +255,7 @@ Do not use anywhere else."
 
 ;; Main provided features
 
+;;;###autoload
 (defun el-fetch ()
   "Show system information in Neofetch-like style (eg CPU, RAM)."
   (interactive)
