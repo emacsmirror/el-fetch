@@ -52,6 +52,20 @@ install:
     - make install
 
 
+image:
+  stage: install
+
+  rules:
+    - changes:
+      - .gitlab-ci.yml
+      - Makefile
+      - extras/bin/*
+      - src/**/*.el
+
+  script:
+    - make image
+
+
 test:
   stage: test
 
@@ -74,7 +88,7 @@ run:
     - changes:
       - .gitlab-ci.yml
       - Makefile
-      - extras/el-fetch-console
+      - extras/bin/*
       - src/**/*.el
 
   script:
