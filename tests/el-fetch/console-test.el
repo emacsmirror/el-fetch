@@ -24,7 +24,7 @@
 
 
 (describe "Console"
-  :var ((executable (expand-file-name "../../extras/el-fetch-console"
+  :var ((executable (expand-file-name "../../extras/bin/el-fetch"
                                       (file-name-directory load-file-name))))
   (when (file-executable-p executable)
     (it "Any output"
