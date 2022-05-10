@@ -52,7 +52,7 @@ install:
     - make install
 
 
-image:
+create-image:
   stage: install
 
   rules:
