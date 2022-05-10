@@ -24,10 +24,14 @@ FIND        := find
 RM          := rm
 RMDIR       := $(RM) -r
 
-CASKDIR     := $(PWD)/.cask
 EXTRASDIR   := $(PWD)/extras
 SRCDIR      := $(PWD)/src
 TESTSDIR    := $(PWD)/tests
+
+CASKDIR     := $(PWD)/.cask
+CACHEDIR    := $(PWD)/.cache
+IDIR        := $(CACHEDIR)/image
+EMACSIDIR   := $(IDIR)/usr/share/emacs/site-lisp
 
 EMACSFLAGS  := --batch -q --no-site-file
 EMACSCMD     = $(EMACS) $(EMACSFLAGS)
@@ -49,6 +53,7 @@ clean-cask:
 	if [ -d $(CASKDIR) ] ; then $(RMDIR) $(CASKDIR) ; fi
 
 clean: clean-cask clean-el-fetch
+	$(RMDIR) $(CACHEDIR)
 
 
 compile-%:
@@ -78,3 +83,12 @@ install: install-el-fetch
 
 run:
 	$(EMACSCMD) --script $(EXTRASDIR)/el-fetch-console
+
+
+image-%:
+	mkdir -p $(EMACSIDIR)
+	mkdir -p $(EMACSIDIR)/site-gentoo.d
+	cp -r $(SRCDIR)/$(*) $(EMACSIDIR)
+	cp -r $(EXTRASDIR)/gentoo/50$(*)-gentoo.el $(EMACSIDIR)/site-gentoo.d
+
+image: image-el-fetch
