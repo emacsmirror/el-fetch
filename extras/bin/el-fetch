@@ -1,4 +1,4 @@
-#!emacs --script
+#!/usr/bin/env -S emacs --script
 
 
 ;; This file is part of el-fetch.
@@ -22,7 +22,7 @@
 
 (defvar el-fetch-lib
   (expand-file-name
-   "../src/el-fetch/" (file-name-directory (nth 2 command-line-args)))
+   "../../src/el-fetch/" (file-name-directory (nth 2 command-line-args)))
   "Path to the `el-fetch' library.")
 
 (add-to-list 'load-path el-fetch-lib)
