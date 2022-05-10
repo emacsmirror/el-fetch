@@ -172,7 +172,10 @@ Get installed Emacs Lisp packages the time that was taken to load them."
 Get path and size of user's Emacs directory."
   (format "%s (%d files)"
           (abbreviate-file-name user-emacs-directory)
-          (length (directory-files-recursively user-emacs-directory ".*" nil))))
+          (if (file-exists-p user-emacs-directory)
+              (length
+               (directory-files-recursively user-emacs-directory ".*" nil))
+            0)))
 
 (defun el-fetch--info-emacs-theme ()
   "El-Fetch: Emacs theme part.
