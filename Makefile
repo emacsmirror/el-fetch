@@ -31,6 +31,7 @@ TESTSDIR    := $(PWD)/tests
 CASKDIR     := $(PWD)/.cask
 CACHEDIR    := $(PWD)/.cache
 IDIR        := $(CACHEDIR)/image
+BINIDR      := $(IDIR)/usr/bin
 EMACSIDIR   := $(IDIR)/usr/share/emacs/site-lisp
 
 EMACSFLAGS  := --batch -q --no-site-file
@@ -82,13 +83,22 @@ install: install-el-fetch
 
 
 run:
-	$(EMACSCMD) --script $(EXTRASDIR)/el-fetch-console
+	$(EMACSCMD) --script $(EXTRASDIR)/bin/el-fetch
 
+
+image-bin-%:
+	if [ -f $(EXTRASDIR)/bin/$(*) ] ; then \
+		mkdir -p $(BINIDR) ; cp -r $(EXTRASDIR)/bin/$(*) $(BINIDR) ; fi
+
+image-lib-%:
+	mkdir -p $(EMACSIDIR)
+	cp -r $(SRCDIR)/$(*) $(EMACSIDIR)
+
+image-site-gentoo-%:
+	mkdir -p $(EMACSIDIR)/site-gentoo.d
+	cp -r $(EXTRASDIR)/gentoo/50$(*)-gentoo.el $(EMACSIDIR)/site-gentoo.d
 
 image-%:
-	mkdir -p $(EMACSIDIR)
-	mkdir -p $(EMACSIDIR)/site-gentoo.d
-	cp -r $(SRCDIR)/$(*) $(EMACSIDIR)
-	cp -r $(EXTRASDIR)/gentoo/50$(*)-gentoo.el $(EMACSIDIR)/site-gentoo.d
+	$(MAKE) image-bin-$(*) image-lib-$(*) image-site-gentoo-$(*)
 
 image: image-el-fetch
