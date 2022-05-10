@@ -60,6 +60,7 @@ create-image:
       - .gitlab-ci.yml
       - Makefile
       - extras/bin/*
+      - extras/gentoo/*.el
       - src/**/*.el
 
   script:
