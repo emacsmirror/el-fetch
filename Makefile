@@ -54,7 +54,7 @@ clean-cask:
 	if [ -d $(CASKDIR) ] ; then $(RMDIR) $(CASKDIR) ; fi
 
 clean: clean-cask clean-el-fetch
-	$(RMDIR) $(CACHEDIR)
+	if [ -d $(CACHEDIR) ] ; then $(RMDIR) $(CACHEDIR) ; fi
 
 
 compile-%:
