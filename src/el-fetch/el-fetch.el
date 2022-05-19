@@ -161,12 +161,6 @@ Get GNU Emacs version and the version of GUI toolkit Emacs was built to use."
                 (concat " with Motif " motif-version-string))
              "")))
 
-(defun el-fetch--info-emacs-pkgs ()
-  "El-Fetch: packages part.
-Get installed Emacs Lisp packages the time that was taken to load them."
-  (format "%d pkgs (loaded in %s)"
-          (length package-activated-list) (emacs-init-time)))
-
 (defun el-fetch--info-emacs-user-dir ()
   "El-Fetch: directory part.
 Get path and size of user's Emacs directory."
@@ -176,6 +170,12 @@ Get path and size of user's Emacs directory."
               (length
                (directory-files-recursively user-emacs-directory ".*" nil))
             0)))
+
+(defun el-fetch--info-emacs-pkgs ()
+  "El-Fetch: packages part.
+Get installed Emacs Lisp packages the time that was taken to load them."
+  (format "%d pkgs (loaded in %s)"
+          (length package-activated-list) (emacs-init-time)))
 
 (defun el-fetch--info-emacs-theme ()
   "El-Fetch: Emacs theme part.
@@ -224,8 +224,8 @@ Get how long the Emacs process is running."
      "Shell     : "  (el-fetch--info-shell)            "\n"
      ;; GNU Emacs
      "Emacs     : "  (el-fetch--info-emacs-version)    "\n"
-     "Packages  : "  (el-fetch--info-emacs-pkgs)       "\n"
      "User Dir  : "  (el-fetch--info-emacs-user-dir)   "\n"
+     "Packages  : "  (el-fetch--info-emacs-pkgs)       "\n"
      "Theme     : "  (el-fetch--info-emacs-theme)      "\n"
      "Size      : "  (el-fetch--info-emacs-frame)      "\n"
      "Buffers   : "  (el-fetch--info-emacs-buffers)    "\n"
