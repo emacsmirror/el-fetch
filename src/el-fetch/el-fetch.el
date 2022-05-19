@@ -204,12 +204,12 @@ Get width and height of current frame."
 (defun el-fetch--info-emacs-buffers ()
   "El-Fetch: open Emacs buffers part.
 Get number of open buffers."
-  (format "%d" (length (buffer-list))))
+  (format "%d open" (length (buffer-list))))
 
 (defun el-fetch--info-emacs-processes ()
   "El-Fetch: Emacs processes part.
 Get number of running processes."
-  (format "%d" (length (process-list))))
+  (format "%d running" (length (process-list))))
 
 (defun el-fetch--info-emacs-uptime ()
   "El-Fetch: uptime part.
@@ -224,7 +224,7 @@ Get how long the Emacs process is running."
   (let ((el-fetch-header (concat (user-real-login-name) "@" (system-name))))
     (concat
      el-fetch-header  "\n"
-     (make-string (string-width el-fetch-header) ?-)  "\n"
+     (make-string (string-width el-fetch-header) ?-)   "\n"
      ;; Host
      "CPU       : "  (el-fetch--info-cpu)              "\n"
      "Memory    : "  (el-fetch--info-memory)           "\n"
