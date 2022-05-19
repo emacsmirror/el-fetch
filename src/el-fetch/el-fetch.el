@@ -192,8 +192,8 @@ Get the number of directories and nonexistent paths in the `load-path'."
 Get loaded themes."
   (if custom-enabled-themes
       (apply #'concat (mapcar (lambda (sym) (concat (symbol-name sym) " "))
-                              custom-enabled-themes)))
-  "N/A")
+                              custom-enabled-themes))
+    "N/A"))
 
 (defun el-fetch--info-emacs-frame ()
   "El-Fetch: Emacs frame part.
