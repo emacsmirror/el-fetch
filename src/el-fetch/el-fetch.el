@@ -216,21 +216,21 @@ Get how long the Emacs process is running."
      el-fetch-header  "\n"
      (make-string (string-width el-fetch-header) ?-)  "\n"
      ;; Host
-     "CPU      : "  (el-fetch--info-cpu)              "\n"
-     "Memory   : "  (el-fetch--info-memory)           "\n"
-     "Device   : "  (el-fetch--info-device)           "\n"
-     "Distro   : "  (el-fetch--info-distro)           "\n"
-     "Kernel   : "  (el-fetch--info-kernel)           "\n"
-     "Shell    : "  (el-fetch--info-shell)            "\n"
+     "CPU       : "  (el-fetch--info-cpu)              "\n"
+     "Memory    : "  (el-fetch--info-memory)           "\n"
+     "Device    : "  (el-fetch--info-device)           "\n"
+     "Distro    : "  (el-fetch--info-distro)           "\n"
+     "Kernel    : "  (el-fetch--info-kernel)           "\n"
+     "Shell     : "  (el-fetch--info-shell)            "\n"
      ;; GNU Emacs
-     "Emacs    : "  (el-fetch--info-emacs-version)    "\n"
-     "Packages : "  (el-fetch--info-emacs-pkgs)       "\n"
-     "User Dir : "  (el-fetch--info-emacs-user-dir)   "\n"
-     "Theme    : "  (el-fetch--info-emacs-theme)      "\n"
-     "Size     : "  (el-fetch--info-emacs-frame)      "\n"
-     "Buffers  : "  (el-fetch--info-emacs-buffers)    "\n"
-     "Processes: "  (el-fetch--info-emacs-processes)  "\n"
-     "Uptime   : "  (el-fetch--info-emacs-uptime))))
+     "Emacs     : "  (el-fetch--info-emacs-version)    "\n"
+     "Packages  : "  (el-fetch--info-emacs-pkgs)       "\n"
+     "User Dir  : "  (el-fetch--info-emacs-user-dir)   "\n"
+     "Theme     : "  (el-fetch--info-emacs-theme)      "\n"
+     "Size      : "  (el-fetch--info-emacs-frame)      "\n"
+     "Buffers   : "  (el-fetch--info-emacs-buffers)    "\n"
+     "Processes : "  (el-fetch--info-emacs-processes)  "\n"
+     "Uptime    : "  (el-fetch--info-emacs-uptime))))
 
 
 ;; Mode
