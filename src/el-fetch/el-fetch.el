@@ -196,6 +196,11 @@ Get width and height of current frame."
 Get number of open buffers."
   (format "%d" (length (buffer-list))))
 
+(defun el-fetch--info-emacs-processes ()
+  "El-Fetch: Emacs processes part.
+Get number of running processes."
+  (format "%d" (length (process-list))))
+
 (defun el-fetch--info-emacs-uptime ()
   "El-Fetch: uptime part.
 Get how long the Emacs process is running."
@@ -224,6 +229,7 @@ Get how long the Emacs process is running."
      "Theme    : "  (el-fetch--info-emacs-theme)      "\n"
      "Size     : "  (el-fetch--info-emacs-frame)      "\n"
      "Buffers  : "  (el-fetch--info-emacs-buffers)    "\n"
+     "Processes: "  (el-fetch--info-emacs-processes)  "\n"
      "Uptime   : "  (el-fetch--info-emacs-uptime))))
 
 
