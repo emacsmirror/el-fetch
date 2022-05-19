@@ -60,6 +60,7 @@
 
 
 (require 'package)
+(require 'seq)
 
 
 ;; Helper functions
@@ -177,6 +178,15 @@ Get installed Emacs Lisp packages the time that was taken to load them."
   (format "%d pkgs (loaded in %s)"
           (length package-activated-list) (emacs-init-time)))
 
+(defun el-fetch--info-emacs-load-path ()
+  "El-Fetch: load-path part.
+Get the number of directories and nonexistent paths in the `load-path'."
+  (let ((nonexistent
+         (seq-filter (lambda (path) (not (file-exists-p path))) load-path)))
+    (concat (format "%d directories" (length load-path))
+            (when nonexistent
+              (format ", %d nonexistent" (length nonexistent))))))
+
 (defun el-fetch--info-emacs-theme ()
   "El-Fetch: Emacs theme part.
 Get loaded themes."
@@ -226,6 +236,7 @@ Get how long the Emacs process is running."
      "Emacs     : "  (el-fetch--info-emacs-version)    "\n"
      "User Dir  : "  (el-fetch--info-emacs-user-dir)   "\n"
      "Packages  : "  (el-fetch--info-emacs-pkgs)       "\n"
+     "Load Path : "  (el-fetch--info-emacs-load-path)  "\n"
      "Theme     : "  (el-fetch--info-emacs-theme)      "\n"
      "Size      : "  (el-fetch--info-emacs-frame)      "\n"
      "Buffers   : "  (el-fetch--info-emacs-buffers)    "\n"
