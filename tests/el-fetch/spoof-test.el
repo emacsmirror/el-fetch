@@ -41,4 +41,4 @@
     (fset 'getenv (lambda (&rest rest) "emacs"))
     (el-fetch)
     (goto-char (point-min))
-    (expect (re-search-forward "Shell    : emacs"))))
+    (expect (re-search-forward "Shell +: emacs"))))
