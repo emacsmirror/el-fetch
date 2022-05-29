@@ -102,7 +102,7 @@ MODES is a list of mode name strings, without \"-mode\" suffix."
         default
       (apply #'concat
              (car enabled)
-             (mapcar (lambda (str) (concat " " str)) (cdr enabled))))))
+             (mapcar (lambda (str) (concat ", " str)) (cdr enabled))))))
 
 
 ;; Host information
