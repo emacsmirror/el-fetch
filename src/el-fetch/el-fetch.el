@@ -89,6 +89,21 @@
                            (cadr (split-string line "="))))))))
         (concat return " " "(" os ")") os)))
 
+(defun el-fetch--get-enabled-modes (modes default)
+  "Return string containing the enabled modes form among MODES list.
+If no MODES are enabled, return DEFAULT.
+MODES is a list of mode name strings, without \"-mode\" suffix."
+  (let* ((names (mapcar (lambda (str)
+                          (let ((sym (intern (concat str "-mode"))))
+                            (if (and (boundp sym) (eval sym)) str nil)))
+                        modes))
+         (enabled (seq-filter #'stringp names)))
+    (if (equal enabled nil)
+        default
+      (apply #'concat
+             (car enabled)
+             (mapcar (lambda (str) (concat " " str)) (cdr enabled))))))
+
 
 ;; Host information
 
@@ -217,25 +232,21 @@ Get loaded themes."
 (defun el-fetch--info-emacs-bars ()
   "El-Fetch: Emacs bars part.
 Get enabled bars, that is: menu-bar, scroll-bar, tab-bar and tool-bar."
-  (let* ((bars '("menu" "scroll" "tab" "tool"))
-         (modes (mapcar (lambda (str)
-                          (let ((sym (intern (concat str "-bar-mode"))))
-                            (if (and (boundp sym) (eval sym))
-                                str
-                              nil)))
-                        bars))
-         (enabled (seq-filter #'stringp modes)))
-    (if (equal enabled nil)
-        "none"
-      (apply #'concat
-             (car enabled)
-             (mapcar (lambda (str) (concat " " str)) (cdr enabled))))))
+  (el-fetch--get-enabled-modes (mapc (lambda (str) (concat str "-bar"))
+                                     '("menu" "scroll" "tab" "tool"))
+                               "none"))
 
 (defun el-fetch--info-emacs-frame ()
   "El-Fetch: Emacs frame part.
 Get width and height of current frame."
   (format "%d lines / %d columns"
           (frame-parameter nil 'width) (frame-parameter nil 'height)))
+
+(defun el-fetch--info-emacs-completion ()
+  "El-Fetch: Emacs completion part.
+Get enabled completion frameworks."
+  (el-fetch--get-enabled-modes '("helm" "ido" "ivy" "ivy-rich" "selectrum")
+                               "completion-at-point"))
 
 (defun el-fetch--info-emacs-buffers ()
   "El-Fetch: open Emacs buffers part.
@@ -277,6 +288,7 @@ Get how long the Emacs process is running."
      "Theme      : " (el-fetch--info-emacs-theme)      "\n"
      "Bars       : " (el-fetch--info-emacs-bars)       "\n"
      "Size       : " (el-fetch--info-emacs-frame)      "\n"
+     "Completion : " (el-fetch--info-emacs-completion) "\n"
      "Buffers    : " (el-fetch--info-emacs-buffers)    "\n"
      "Processes  : " (el-fetch--info-emacs-processes)  "\n"
      "Uptime     : " (el-fetch--info-emacs-uptime))))
