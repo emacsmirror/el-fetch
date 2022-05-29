@@ -187,6 +187,25 @@ Get the number of directories and nonexistent paths in the `load-path'."
             (when nonexistent
               (format ", %d nonexistent" (length nonexistent))))))
 
+(defun el-fetch--info-emacs-font ()
+  "El-Fetch: Emacs font part.
+Get main used font."
+  (let ((default-font (face-attribute 'default :font)))
+    (if (equal default-font 'unspecified)
+        "N/A"
+      (let* ((font-vec    (font-info default-font))
+             (font-full   (aref font-vec 1))
+             (font-props  (split-string font-full ":"))
+             (font-name   (car font-props))
+             (font-height (face-attribute 'default :height))
+             (font-weight (face-attribute 'default :weight))
+             (font-width  (face-attribute 'default :width)))
+        (format "%s (height: %s, weight: %s, width: %s)"
+                font-name
+                font-height
+                font-weight
+                font-width)))))
+
 (defun el-fetch--info-emacs-theme ()
   "El-Fetch: Emacs theme part.
 Get loaded themes."
@@ -237,6 +256,7 @@ Get how long the Emacs process is running."
      "User Dir  : "  (el-fetch--info-emacs-user-dir)   "\n"
      "Packages  : "  (el-fetch--info-emacs-pkgs)       "\n"
      "Load Path : "  (el-fetch--info-emacs-load-path)  "\n"
+     "Font      : "  (el-fetch--info-emacs-font)       "\n"
      "Theme     : "  (el-fetch--info-emacs-theme)      "\n"
      "Size      : "  (el-fetch--info-emacs-frame)      "\n"
      "Buffers   : "  (el-fetch--info-emacs-buffers)    "\n"
