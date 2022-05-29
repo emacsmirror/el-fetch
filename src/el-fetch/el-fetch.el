@@ -219,9 +219,10 @@ Get loaded themes."
 Get enabled bars, that is: menu-bar, scroll-bar, tab-bar and tool-bar."
   (let* ((bars '("menu" "scroll" "tab" "tool"))
          (modes (mapcar (lambda (str)
-                          (if (eval (intern (concat str "-bar-mode")))
-                              str
-                            nil))
+                          (let ((sym (intern (concat str "-bar-mode"))))
+                            (if (and (boundp sym) (eval sym))
+                                str
+                              nil)))
                         bars))
          (enabled (seq-filter #'stringp modes)))
     (if (equal enabled nil)
