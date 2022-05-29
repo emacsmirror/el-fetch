@@ -245,7 +245,7 @@ Get width and height of current frame."
 (defun el-fetch--info-emacs-completion ()
   "El-Fetch: Emacs completion part.
 Get enabled completion frameworks."
-  (el-fetch--get-enabled-modes '("helm" "ido" "ivy" "ivy-rich" "selectrum")
+  (el-fetch--get-enabled-modes '("helm" "ido" "ivy" "selectrum")
                                "completion-at-point"))
 
 (defun el-fetch--info-emacs-buffers ()
