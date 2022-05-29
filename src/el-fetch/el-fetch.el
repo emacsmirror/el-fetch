@@ -232,8 +232,8 @@ Get loaded themes."
 (defun el-fetch--info-emacs-bars ()
   "El-Fetch: Emacs bars part.
 Get enabled bars, that is: menu-bar, scroll-bar, tab-bar and tool-bar."
-  (el-fetch--get-enabled-modes (mapc (lambda (str) (concat str "-bar"))
-                                     '("menu" "scroll" "tab" "tool"))
+  (el-fetch--get-enabled-modes (mapcar (lambda (str) (concat str "-bar"))
+                                       '("menu" "scroll" "tab" "tool"))
                                "none"))
 
 (defun el-fetch--info-emacs-frame ()
