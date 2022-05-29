@@ -214,6 +214,22 @@ Get loaded themes."
                               custom-enabled-themes))
     "N/A"))
 
+(defun el-fetch--info-emacs-bars ()
+  "El-Fetch: Emacs bars part.
+Get enabled bars, that is: menu-bar, scroll-bar, tab-bar and tool-bar."
+  (let* ((bars '("menu" "scroll" "tab" "tool"))
+         (modes (mapcar (lambda (str)
+                          (if (eval (intern (concat str "-bar-mode")))
+                              str
+                            nil))
+                        bars))
+         (enabled (seq-filter #'stringp modes)))
+    (if (equal enabled nil)
+        "none"
+      (apply #'concat
+             (car enabled)
+             (mapcar (lambda (str) (concat " " str)) (cdr enabled))))))
+
 (defun el-fetch--info-emacs-frame ()
   "El-Fetch: Emacs frame part.
 Get width and height of current frame."
@@ -258,6 +274,7 @@ Get how long the Emacs process is running."
      "Load Path : "  (el-fetch--info-emacs-load-path)  "\n"
      "Font      : "  (el-fetch--info-emacs-font)       "\n"
      "Theme     : "  (el-fetch--info-emacs-theme)      "\n"
+     "Bars      : "  (el-fetch--info-emacs-bars)       "\n"
      "Size      : "  (el-fetch--info-emacs-frame)      "\n"
      "Buffers   : "  (el-fetch--info-emacs-buffers)    "\n"
      "Processes : "  (el-fetch--info-emacs-processes)  "\n"
