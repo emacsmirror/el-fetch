@@ -59,6 +59,7 @@
 ;;; Code:
 
 
+(require 'cl-lib)
 (require 'package)
 (require 'seq)
 
@@ -263,13 +264,29 @@ Get number of running processes."
 Get how long the Emacs process is running."
   (concat (emacs-uptime) " in Emacs"))
 
+(defun el-fetch--group-memory-use ()
+  "El-Fetch: used memory part.
+Get Emacs internal memory use.
+Returns a list of strings."
+  (cl-mapcar
+   (lambda (gc-symbol gc-value)
+     (let* ((symbol-str (symbol-name gc-symbol))
+            (symbol-len (string-bytes symbol-str)))
+       (format "\n%s %s : %d"
+               symbol-str
+               (make-string (- 9 symbol-len) ?\s)
+               gc-value)))
+   '(Conses Floats Vectors Symbols Chars Intervals Strings)
+   (memory-use-counts)))
+
 
 ;; Collect information
 
 (defun el-fetch--collect-info ()
   "Gather up El-Fetch info data and return it as a string."
   (let ((el-fetch-header (concat (user-real-login-name) "@" (system-name))))
-    (concat
+    (apply
+     #'concat
      el-fetch-header  "\n"
      (make-string (string-width el-fetch-header) ?-)   "\n"
      ;; Host
@@ -291,7 +308,8 @@ Get how long the Emacs process is running."
      "Completion : " (el-fetch--info-emacs-completion) "\n"
      "Buffers    : " (el-fetch--info-emacs-buffers)    "\n"
      "Processes  : " (el-fetch--info-emacs-processes)  "\n"
-     "Uptime     : " (el-fetch--info-emacs-uptime))))
+     "Uptime     : " (el-fetch--info-emacs-uptime)
+     (el-fetch--group-memory-use))))
 
 
 ;; Mode
