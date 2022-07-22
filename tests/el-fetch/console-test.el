@@ -1,4 +1,4 @@
-;;; console-test.el --- -*- lexical-binding: t; no-byte-compile: t;-*-
+;;; console-test.el --- -*- lexical-binding: t; no-byte-compile: t; -*-
 
 
 ;; This file is part of el-fetch.
@@ -18,6 +18,7 @@
 ;; Copyright (c) 2022, Maciej Barć <xgqt@riseup.net>
 ;; Licensed under the GNU GPL v3 License
 ;; SPDX-License-Identifier: GPL-3.0-only
+
 
 
 (require 'buttercup)
