@@ -191,17 +191,16 @@ Get path and size of user's Emacs directory."
 (defun el-fetch--info-emacs-pkgs ()
   "El-Fetch: packages part.
 Get installed Emacs Lisp packages the time that was taken to load them."
-  (format "%s loaded in %s"
-          (concat (when (bound-and-true-p package-alist)
-                    (format "%d (standard)"
-                            (length package-activated-list)))
-                  (when (boundp 'straight--profile-cache)
-                    (format "%d (straight)"
-                            (hash-table-count straight--profile-cache)))
-                  (when (fboundp 'elpaca--queued)
-                    (format "%d (elpaca)"
-                            (length (elpaca--queued)))))
-          (emacs-init-time)))
+  (concat (when (bound-and-true-p package-alist)
+            (format "%d (standard) "
+                    (length package-activated-list)))
+          (when (boundp 'straight--profile-cache)
+            (format "%d (straight) "
+                    (hash-table-count straight--profile-cache)))
+          (when (fboundp 'elpaca--queued)
+            (format "%d (elpaca) "
+                    (length (elpaca--queued))))
+          (format "loaded in %s" (emacs-init-time))))
 
 (defun el-fetch--info-emacs-load-path ()
   "El-Fetch: load-path part.
