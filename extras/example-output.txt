@@ -3,10 +3,10 @@ user@localhost
 CPU        : AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx
 Memory     : 16.660GiB / 17.904GiB
 Device     : 81NC
-Distro     : Gentoo/Linux (gnu/linux)
-Kernel     : 5.15.26-gentoo
+Distro     : Gentoo Linux (gnu/linux)
+Kernel     : 5.15.75-gentoo
 Shell      : /bin/zsh
-Emacs      : 27.2 with GTK 3.24.31
+Emacs      : 28.2 with GTK 3.24.34
 User Dir   : ~/.config/emacs/ (8762 files)
 Packages   : 63 pkgs (loaded in 1.651704712 seconds)
 Load Path  : 195 directories
@@ -18,3 +18,10 @@ Completion : ivy
 Buffers    : 11 open
 Processes  : 0 running
 Uptime     : 30 minutes, 30 seconds in Emacs
+Conses     : 5890578
+Floats     : 16543
+Vectors    : 13157993
+Symbols    : 78019
+Chars      : 48604509
+Intervals  : 33215
+Strings    : 1585185
