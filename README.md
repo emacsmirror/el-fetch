@@ -1,6 +1,21 @@
 # El-Fetch
 
-[![MELPA](https://melpa.org/packages/el-fetch-badge.svg)](https://melpa.org/#/el-fetch) [![MELPA Stable](https://stable.melpa.org/packages/el-fetch-badge.svg)](https://stable.melpa.org/#/el-fetch)
+<p align="center">
+    <a href="https://melpa.org/#/el-fetch">
+        <img src="https://melpa.org/packages/el-fetch-badge.svg">
+    </a>
+    <a href="https://stable.melpa.org/#/el-fetch">
+        <img src="https://stable.melpa.org/packages/el-fetch-badge.svg">
+    </a>
+    <a href="https://archive.softwareheritage.org/browse/origin/?origin_url=https://gitlab.com/xgqt/emacs-el-fetch">
+        <img src="https://archive.softwareheritage.org/badge/origin/https://gitlab.com/xgqt/emacs-el-fetch/">
+    </a>
+    <a href="https://gitlab.com/xgqt/emacs-el-fetch/pipelines">
+        <img src="https://gitlab.com/xgqt/emacs-el-fetch/badges/master/pipeline.svg">
+    </a>
+</p>
+
+Show system information in Neofetch-like style (eg CPU, RAM).
 
 
 ## About
