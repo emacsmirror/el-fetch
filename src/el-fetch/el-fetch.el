@@ -23,7 +23,7 @@
 
 ;; Author: Maciej Barć <xgqt@riseup.net>
 ;; Homepage: https://gitlab.com/xgqt/emacs-el-fetch
-;; Version: 3.2.1
+;; Version: 3.3.0
 ;; Package-Requires: ((emacs "25.1"))
 
 
@@ -64,6 +64,10 @@
 (require 'easymenu)
 (require 'package)
 (require 'seq)
+
+
+(defconst el-fetch-version "3.3.0"
+  "El-Fetch version.")
 
 
 ;; Helper functions
