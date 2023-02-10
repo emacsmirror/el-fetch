@@ -61,6 +61,7 @@
 
 
 (require 'cl-lib)
+(require 'easymenu)
 (require 'package)
 (require 'seq)
 
@@ -346,6 +347,13 @@ Returns a list of strings."
     (define-key el-fetch-mode-map (kbd "s") 'isearch-forward)
     el-fetch-mode-map)
   "Key map for El-Fetch major mode.")
+
+(easy-menu-define el-fetch-mode-menu el-fetch-mode-map
+  "Menu for `el-fetch-mode'."
+  '("El-Fetch"
+    ["Run again" el-fetch]
+    ["Quit" quit-window]
+    ["Help" describe-mode]))
 
 (define-derived-mode el-fetch-mode fundamental-mode "el-fetch"
   "Major mode for browsing El-Fetch output.
