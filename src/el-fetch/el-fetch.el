@@ -65,6 +65,8 @@
 (require 'package)
 (require 'seq)
 
+(require 'el-fetch-custom)
+
 
 (defconst el-fetch-version "3.3.0"
   "El-Fetch version.")
@@ -304,26 +306,45 @@ Returns a list of strings."
      el-fetch-header  "\n"
      (make-string (string-width el-fetch-header) ?-)   "\n"
      ;; Host
-     "CPU        : " (el-fetch--info-cpu)              "\n"
-     "Memory     : " (el-fetch--info-memory)           "\n"
-     "Device     : " (el-fetch--info-device)           "\n"
-     "Distro     : " (el-fetch--info-distro)           "\n"
-     "Kernel     : " (el-fetch--info-kernel)           "\n"
-     "Shell      : " (el-fetch--info-shell)            "\n"
+     (when el-fetch-custom-info-cpu
+       (concat "CPU        : " (el-fetch--info-cpu)              "\n"))
+     (when el-fetch-custom-info-memory
+       (concat "Memory     : " (el-fetch--info-memory)           "\n"))
+     (when el-fetch-custom-info-device
+       (concat "Device     : " (el-fetch--info-device)           "\n"))
+     (when el-fetch-custom-info-distro
+       (concat "Distro     : " (el-fetch--info-distro)           "\n"))
+     (when el-fetch-custom-info-kernel
+       (concat "Kernel     : " (el-fetch--info-kernel)           "\n"))
+     (when el-fetch-custom-info-shell
+       (concat "Shell      : " (el-fetch--info-shell)            "\n"))
      ;; GNU Emacs
-     "Emacs      : " (el-fetch--info-emacs-version)    "\n"
-     "User Dir   : " (el-fetch--info-emacs-user-dir)   "\n"
-     "Packages   : " (el-fetch--info-emacs-pkgs)       "\n"
-     "Load Path  : " (el-fetch--info-emacs-load-path)  "\n"
-     "Font       : " (el-fetch--info-emacs-font)       "\n"
-     "Theme      : " (el-fetch--info-emacs-theme)      "\n"
-     "Bars       : " (el-fetch--info-emacs-bars)       "\n"
-     "Size       : " (el-fetch--info-emacs-frame)      "\n"
-     "Completion : " (el-fetch--info-emacs-completion) "\n"
-     "Buffers    : " (el-fetch--info-emacs-buffers)    "\n"
-     "Processes  : " (el-fetch--info-emacs-processes)  "\n"
-     "Uptime     : " (el-fetch--info-emacs-uptime)
-     (el-fetch--group-memory-use))))
+     (when el-fetch-custom-info-emacs-version
+       (concat "Emacs      : " (el-fetch--info-emacs-version)    "\n"))
+     (when el-fetch-custom-info-emacs-user-dir
+       (concat "User Dir   : " (el-fetch--info-emacs-user-dir)   "\n"))
+     (when el-fetch-custom-info-emacs-pkgs
+       (concat "Packages   : " (el-fetch--info-emacs-pkgs)       "\n"))
+     (when el-fetch-custom-info-emacs-load-path
+       (concat "Load Path  : " (el-fetch--info-emacs-load-path)  "\n"))
+     (when el-fetch-custom-info-emacs-font
+       (concat "Font       : " (el-fetch--info-emacs-font)       "\n"))
+     (when el-fetch-custom-info-emacs-theme
+       (concat "Theme      : " (el-fetch--info-emacs-theme)      "\n"))
+     (when el-fetch-custom-info-emacs-bars
+       (concat "Bars       : " (el-fetch--info-emacs-bars)       "\n"))
+     (when el-fetch-custom-info-emacs-frame
+       (concat "Size       : " (el-fetch--info-emacs-frame)      "\n"))
+     (when el-fetch-custom-info-emacs-completion
+       (concat "Completion : " (el-fetch--info-emacs-completion) "\n"))
+     (when el-fetch-custom-info-emacs-buffers
+       (concat "Buffers    : " (el-fetch--info-emacs-buffers)    "\n"))
+     (when el-fetch-custom-info-emacs-processes
+       (concat "Processes  : " (el-fetch--info-emacs-processes)  "\n"))
+     (when el-fetch-custom-info-emacs-uptime
+       (concat "Uptime     : " (el-fetch--info-emacs-uptime)))
+     (when el-fetch-custom-info-group-memory-use
+       (el-fetch--group-memory-use)))))
 
 
 ;; Mode
