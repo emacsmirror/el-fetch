@@ -34,10 +34,10 @@
 
 (defgroup el-fetch nil
   "System information in Neofetch-like style."
-  :group 'emacs)
+  :group 'applications)
 
 
-(defmacro el-fetch-custom-information-defcustom (symbol-identifier information-part-comment)
+(defmacro def-el-fetch-custom-information-toggle (symbol-identifier information-part-comment)
   "Quick defcustom for El-Fetch information parts.
 SYMBOL-IDENTIFIER is the variable to bind new defcustom.
 INFORMATION-PART-COMMENT is used for defcustom docstring."
@@ -47,45 +47,45 @@ INFORMATION-PART-COMMENT is used for defcustom docstring."
      :group 'el-fetch))
 
 
-(el-fetch-custom-information-defcustom el-fetch-custom-info-cpu
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-cpu
                                        "CPU")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-memory
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-memory
                                        "memory (RAM)")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-device
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-device
                                        "device model")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-distro
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-distro
                                        "system distribution")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-kernel
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-kernel
                                        "system kernel")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-shell
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-shell
                                        "SHELL")
 
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-version
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-version
                                        "GNU Emacs version")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-user-dir
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-user-dir
                                        "GNU Emacs user directory")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-pkgs
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-pkgs
                                        "GNU Emacs installed packages")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-load-path
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-load-path
                                        "GNU Emacs load path")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-font
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-font
                                        "GNU Emacs font")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-theme
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-theme
                                        "GNU Emacs theme")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-bars
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-bars
                                        "GNU Emacs bars")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-frame
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-frame
                                        "GNU Emacs frame")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-completion
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-completion
                                        "GNU Emacs completion framework")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-buffers
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-buffers
                                        "GNU Emacs buffers")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-processes
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-processes
                                        "GNU Emacs processes")
-(el-fetch-custom-information-defcustom el-fetch-custom-info-emacs-uptime
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-emacs-uptime
                                        "GNU Emacs uptime")
 
-(el-fetch-custom-information-defcustom el-fetch-custom-info-group-memory-use
+(def-el-fetch-custom-information-toggle el-fetch-custom-info-group-memory-use
                                        "GNU Emacs internal memory use")
 
 
