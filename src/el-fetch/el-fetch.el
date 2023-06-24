@@ -23,8 +23,10 @@
 
 ;; Author: Maciej Barć <xgqt@riseup.net>
 ;; Homepage: https://gitlab.com/xgqt/emacs-el-fetch
-;; Version: 3.3.0
+;; Keywords: games
 ;; Package-Requires: ((emacs "25.1"))
+;; SPDX-License-Identifier: GPL-3.0-or-later
+;; Version: 3.3.0
 
 
 
